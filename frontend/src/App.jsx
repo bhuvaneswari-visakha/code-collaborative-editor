@@ -21,13 +21,10 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
           <Route path="/features" element={<Feature />} />
         </Route>
         */}
-        <Route path="/" element={<div style={{ padding: '50px', textAlign: 'center', fontFamily: 'Arial, sans-serif' }}>
+        <Route path="/" element={<div>
           <h1>Welcome to Code Collaborative Editor</h1>
           <p>A real-time collaborative code editor for teams</p>
-          <div style={{ marginTop: '30px' }}>
-            <a href="/login" style={{ padding: '10px 20px', backgroundColor: '#007bff', color: 'white', textDecoration: 'none', borderRadius: '5px', marginRight: '10px' }}>Login</a>
-            <a href="/register" style={{ padding: '10px 20px', backgroundColor: '#28a745', color: 'white', textDecoration: 'none', borderRadius: '5px' }}>Register</a>
-          </div>
+          <a href="/login">Login</a> | <a href="/register">Register</a>
         </div>} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
