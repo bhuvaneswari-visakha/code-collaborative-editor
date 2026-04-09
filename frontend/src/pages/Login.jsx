@@ -129,14 +129,13 @@ const Login = () => {
         <form onSubmit={handleSubmit} style={{ width: '100%' }}>
           <div style={{ marginBottom: '30px' }}>
             <label style={{
-              display: 'block',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px',
               marginBottom: '10px',
               color: '#374151',
               fontWeight: '700',
-              fontSize: '1rem',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '8px'
+              fontSize: '1rem'
             }}>
               <span style={{ fontSize: '1.2rem' }}>👤</span>
               Username
@@ -176,14 +175,13 @@ const Login = () => {
 
           <div style={{ marginBottom: '35px' }}>
             <label style={{
-              display: 'block',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px',
               marginBottom: '10px',
               color: '#374151',
               fontWeight: '700',
-              fontSize: '1rem',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '8px'
+              fontSize: '1rem'
             }}>
               <span style={{ fontSize: '1.2rem' }}>🔐</span>
               Password

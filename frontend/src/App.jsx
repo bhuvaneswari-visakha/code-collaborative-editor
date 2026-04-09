@@ -45,7 +45,17 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
               height: '80px',
               background: 'rgba(255, 255, 255, 0.1)',
               borderRadius: '50%',
-              animation: 'float 6s ease-in-out infinite'
+              animation: 'float 6s ease-in-out infinite, pulse 4s ease-in-out infinite !important'
+            }}></div>
+            <div style={{
+              position: 'absolute',
+              top: '20%',
+              left: '80%',
+              width: '50px',
+              height: '50px',
+              background: 'rgba(255, 255, 255, 0.08)',
+              borderRadius: '50%',
+              animation: 'float 7s ease-in-out infinite reverse, glow 5s ease-in-out infinite !important'
             }}></div>
             <div style={{
               position: 'absolute',
@@ -55,7 +65,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
               height: '60px',
               background: 'rgba(255, 255, 255, 0.08)',
               borderRadius: '50%',
-              animation: 'float 8s ease-in-out infinite reverse'
+              animation: 'float 8s ease-in-out infinite reverse, rainbow 6s linear infinite !important'
             }}></div>
             <div style={{
               position: 'absolute',
@@ -65,7 +75,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
               height: '40px',
               background: 'rgba(255, 255, 255, 0.06)',
               borderRadius: '50%',
-              animation: 'float 7s ease-in-out infinite'
+              animation: 'float 7s ease-in-out infinite, shake 8s ease-in-out infinite !important'
             }}></div>
             <div style={{
               position: 'absolute',
@@ -75,7 +85,27 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
               height: '100px',
               background: 'rgba(255, 255, 255, 0.05)',
               borderRadius: '50%',
-              animation: 'float 9s ease-in-out infinite reverse'
+              animation: 'float 9s ease-in-out infinite reverse, pulse 6s ease-in-out infinite reverse !important'
+            }}></div>
+            <div style={{
+              position: 'absolute',
+              bottom: '40%',
+              left: '5%',
+              width: '30px',
+              height: '30px',
+              background: 'rgba(255, 255, 255, 0.07)',
+              borderRadius: '50%',
+              animation: 'float 5s ease-in-out infinite, glow 7s ease-in-out infinite !important'
+            }}></div>
+            <div style={{
+              position: 'absolute',
+              top: '70%',
+              right: '5%',
+              width: '70px',
+              height: '70px',
+              background: 'rgba(255, 255, 255, 0.06)',
+              borderRadius: '50%',
+              animation: 'float 10s ease-in-out infinite reverse, rainbow 8s linear infinite !important'
             }}></div>
 
             {/* Main Content Card */}
@@ -89,13 +119,14 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
               maxWidth: '900px',
               width: '100%',
               position: 'relative',
-              zIndex: '1'
+              zIndex: '1',
+              animation: 'slideInUp 1.5s ease-out, fadeInScale 2s ease-out !important'
             }}>
               {/* Hero Icon */}
               <div style={{
                 fontSize: '4rem',
                 marginBottom: '20px',
-                animation: 'bounce 2s ease-in-out infinite'
+                animation: 'bounce 2s ease-in-out infinite, rainbow 3s linear infinite !important'
               }}>
                 🚀
               </div>
@@ -109,7 +140,8 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
                 backgroundClip: 'text',
-                lineHeight: '1.1'
+                lineHeight: '1.1',
+                animation: 'fadeInScale 2.5s ease-out, glow 4s ease-in-out infinite !important'
               }}>
                 Code Collaborative<br/>
                 <span style={{
@@ -131,7 +163,8 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
                 lineHeight: '1.7',
                 maxWidth: '700px',
                 margin: '0 auto 50px auto',
-                fontWeight: '300'
+                fontWeight: '300',
+                animation: 'slideInUp 2s ease-out 0.5s both !important'
               }}>
                 Experience the future of collaborative coding with real-time synchronization,
                 intelligent code completion, and seamless team collaboration.
@@ -160,7 +193,8 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
                   borderRadius: '15px',
                   backdropFilter: 'blur(10px)',
                   border: '1px solid rgba(255, 255, 255, 0.1)',
-                  minWidth: '120px'
+                  minWidth: '120px',
+                  animation: 'pulse 3s ease-in-out infinite !important'
                 }}>
                   <div style={{ fontSize: '2rem', marginBottom: '10px' }}>⚡</div>
                   <div style={{ fontSize: '0.9rem', fontWeight: '500' }}>Real-time Sync</div>
@@ -172,10 +206,11 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
                   borderRadius: '15px',
                   backdropFilter: 'blur(10px)',
                   border: '1px solid rgba(255, 255, 255, 0.1)',
-                  minWidth: '120px'
+                  minWidth: '120px',
+                  animation: 'glow 4s ease-in-out infinite !important'
                 }}>
-                  <div style={{ fontSize: '2rem', marginBottom: '10px' }}>🤖</div>
-                  <div style={{ fontSize: '0.9rem', fontWeight: '500' }}>AI-Powered</div>
+                  <div style={{ fontSize: '2rem', marginBottom: '10px' }}>🔒</div>
+                  <div style={{ fontSize: '0.9rem', fontWeight: '500' }}>Secure</div>
                 </div>
                 <div style={{
                   textAlign: 'center',
@@ -184,10 +219,11 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
                   borderRadius: '15px',
                   backdropFilter: 'blur(10px)',
                   border: '1px solid rgba(255, 255, 255, 0.1)',
-                  minWidth: '120px'
+                  minWidth: '120px',
+                  animation: 'shake 5s ease-in-out infinite !important'
                 }}>
-                  <div style={{ fontSize: '2rem', marginBottom: '10px' }}>🔒</div>
-                  <div style={{ fontSize: '0.9rem', fontWeight: '500' }}>Secure</div>
+                  <div style={{ fontSize: '2rem', marginBottom: '10px' }}>👥</div>
+                  <div style={{ fontSize: '0.9rem', fontWeight: '500' }}>Team Collaboration</div>
                 </div>
               </div>
 
@@ -195,7 +231,8 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
                 display: 'flex',
                 gap: '25px',
                 justifyContent: 'center',
-                flexWrap: 'wrap'
+                flexWrap: 'wrap',
+                animation: 'slideInUp 2s ease-out 1s both !important'
               }}>
                 <a href="/login" style={{
                   padding: '18px 45px',
@@ -273,13 +310,43 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
             {/* CSS Animations */}
             <style>{`
               @keyframes float {
-                0%, 100% { transform: translateY(0px) rotate(0deg); }
-                50% { transform: translateY(-20px) rotate(180deg); }
+                0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); }
+                25% { transform: translateY(-15px) rotate(90deg) scale(1.1); }
+                50% { transform: translateY(-30px) rotate(180deg) scale(0.9); }
+                75% { transform: translateY(-15px) rotate(270deg) scale(1.05); }
               }
               @keyframes bounce {
-                0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-                40% { transform: translateY(-10px); }
-                60% { transform: translateY(-5px); }
+                0%, 20%, 50%, 80%, 100% { transform: translateY(0) scale(1); }
+                40% { transform: translateY(-15px) scale(1.1); }
+                60% { transform: translateY(-8px) scale(0.95); }
+              }
+              @keyframes pulse {
+                0%, 100% { transform: scale(1); opacity: 1; }
+                50% { transform: scale(1.1); opacity: 0.8; }
+              }
+              @keyframes glow {
+                0%, 100% { box-shadow: 0 0 20px rgba(255, 255, 255, 0.1); }
+                50% { box-shadow: 0 0 40px rgba(255, 255, 255, 0.3), 0 0 60px rgba(255, 255, 255, 0.2); }
+              }
+              @keyframes shake {
+                0%, 100% { transform: translateX(0); }
+                10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+                20%, 40%, 60%, 80% { transform: translateX(5px); }
+              }
+              @keyframes slideInUp {
+                from { transform: translateY(50px); opacity: 0; }
+                to { transform: translateY(0); opacity: 1; }
+              }
+              @keyframes fadeInScale {
+                from { transform: scale(0.8); opacity: 0; }
+                to { transform: scale(1); opacity: 1; }
+              }
+              @keyframes rainbow {
+                0% { filter: hue-rotate(0deg); }
+                25% { filter: hue-rotate(90deg); }
+                50% { filter: hue-rotate(180deg); }
+                75% { filter: hue-rotate(270deg); }
+                100% { filter: hue-rotate(360deg); }
               }
             `}</style>
           </div>
