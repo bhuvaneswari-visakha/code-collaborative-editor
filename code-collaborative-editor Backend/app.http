@@ -1,0 +1,120 @@
+POST http://localhost:4000/register/
+Content-Type: application/json
+
+{
+  "username": "jungkook",
+  "password": "jungkook",
+  "name":"bhuvana",
+  "email":"bhuvaan@gmail.com"
+  
+}
+###
+
+POST http://localhost:4000/login/
+Content-Type: application/json
+
+{
+  "username": "jungkook",
+  "password": "jungkook"
+}
+
+###
+
+POST http://localhost:4000/workspaces/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Imp1bmdrb29rIiwiaWF0IjoxNzY1ODEzNzkzfQ.R3VouJctoOGLTnE3xxASvZlpk66FB0B0QCOlVNAMIvw
+Content-Type: application/json
+
+{
+  "name": "Bhuvana Editor App"
+}
+
+
+###
+
+PUT http://localhost:4000/workspaces/9e5b6729-be36-4223-94d5-1cc77baaf9c6/rename
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Imp1bmdrb29rIiwiaWF0IjoxNzY1ODEzNzkzfQ.R3VouJctoOGLTnE3xxASvZlpk66FB0B0QCOlVNAMIvw
+Content-Type: application/json
+
+{
+  "newName": "Bhuvva Project"
+}
+
+
+###
+
+GET http://localhost:4000/workspaces/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Imp1bmdrb29rIiwiaWF0IjoxNzY1OTg0ODUwfQ.LAa2DXkHdwqbqOuP7q4UmnmnsMxavGw30eKWHi4H5Sw
+
+###
+POST http://localhost:4000/documents/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Imp1bmdrb29rIiwiaWF0IjoxNzY1ODEzNzkzfQ.R3VouJctoOGLTnE3xxASvZlpk66FB0B0QCOlVNAMIvw
+Content-Type: application/json
+
+{
+  "title": "index.js",
+  "workspaceId": "4d40cd07-77e7-48f0-9d92-66ddfa85a36a",
+  "language": "javascript"
+}
+
+
+###
+
+PUT http://localhost:4000/documents/fdb0c208-bcc2-444b-a3ad-2c47e5bad2c5/save
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Imp1bmdrb29rIiwiaWF0IjoxNzY1ODEzNzkzfQ.R3VouJctoOGLTnE3xxASvZlpk66FB0B0QCOlVNAMIvw
+Content-Type: application/json
+
+{
+  "content": "print(`hii`)"
+}
+
+
+###
+
+GET http://localhost:4000/profile/8f2bbf70-590c-4eb8-9357-eb409a6a7d99/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Imp1bmdrb29rIiwiaWF0IjoxNzY1ODEzNzkzfQ.R3VouJctoOGLTnE3xxASvZlpk66FB0B0QCOlVNAMIvw
+
+
+###
+
+GET http://localhost:4000/documents/fdb0c208-bcc2-444b-a3ad-2c47e5bad2c5/history
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Imp1bmdrb29rIiwiaWF0IjoxNzY1ODEzNzkzfQ.R3VouJctoOGLTnE3xxASvZlpk66FB0B0QCOlVNAMIvw
+###
+
+POST http://localhost:4000/chat/92fdb7db-0085-47cf-b70e-3b387456a4fb/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Imp1bmdrb29rIiwiaWF0IjoxNzY1ODEzNzkzfQ.R3VouJctoOGLTnE3xxASvZlpk66FB0B0QCOlVNAMIvw
+Content-Type: application/json
+
+{
+  "message": "bhuvnz!"
+}
+
+###
+
+PUT http://localhost:4000/settings/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Imp1bmdrb29rIiwiaWF0IjoxNzY1ODEzNzkzfQ.R3VouJctoOGLTnE3xxASvZlpk66FB0B0QCOlVNAMIvw
+Content-Type: application/json
+
+{
+  "theme": "dark",
+  "fontSize": 16
+}
+
+###
+
+DELETE http://localhost:4000/workspaces/8bf35e31-7930-46ef-8ff7-628b6607a15e
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Imp1bmdrb29rIiwiaWF0IjoxNzY1ODIwMzc5fQ.lQMX929zYnv0-nukxE-CIYfPu2tkllOCrahJI721s0c
+
+###
+
+POST http://localhost:4000/workspaces/9e5b6729-be36-4223-94d5-1cc77baaf9c6/collaborators
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Imp1bmdrb29rIiwiaWF0IjoxNzY1ODIwMzc5fQ.lQMX929zYnv0-nukxE-CIYfPu2tkllOCrahJI721s0c
+Content-Type: application/json
+
+{
+  "role" : "developer"
+}
+
+###
+
+DELETE http://localhost:4000/workspaces/671fbfeb-755b-4844-b2d7-324a918d024a/collaborators/8f2bbf70-590c-4eb8-9357-eb409a6a7d99
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Imp1bmdrb29rIiwiaWF0IjoxNzY1ODIwMzc5fQ.lQMX929zYnv0-nukxE-CIYfPu2tkllOCrahJI721s0c

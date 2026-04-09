@@ -1,0 +1,568 @@
+.dashboardContainer {
+  display: flex;
+  width: 100vw;
+  background-color: #faf9fa;
+  
+}
+
+.mainHead {
+  color: #0f172a;
+}
+
+.logo {
+  font-size: 24px;
+  margin-bottom: 20px;
+
+}
+
+.primaryBtn {
+  background: #38bdf8;
+  color: #0f172a;
+  border: none;
+  padding: 0.7rem 0.9rem;
+  border-radius: 8px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  width: fit-content;
+  transition: all 0.3s ease;
+}
+
+.primaryBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 20px rgba(56, 189, 248, 0.4);
+  background: #7dd3fc;
+}
+
+
+.sectionTitle {
+  font-size: 14px;
+  opacity: 0.7;
+  margin-bottom: 8px;
+}
+
+.mainArea {
+  flex: 1;
+  padding: 25px 25px 25px 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+ overflow-y: scroll;
+}
+
+.dashboardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-left: 10px;
+}
+
+.documentsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.docCard:hover{
+  border-color: #072c3c;
+  box-shadow: 0 10px 30px rgba(12, 182, 255, 0.25);
+}
+
+
+
+
+.docCard {
+  background-color: white;
+  padding: 16px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+.docCardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.docCard h4 {
+  margin-bottom: 6px;
+    color: #38bdf8;
+ cursor: pointer;
+  transition: color 0.2s;
+}
+
+.docCard h4:hover {
+  color: #3b82f6;
+}
+
+.docCard p {
+  font-size: 13px;
+  color: rgb(80, 71, 71);
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  width: 260px;
+  padding: 20px;
+  background-color: #0f172a;
+  color: white;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  height:100vh;
+}
+
+.sidebar-closed .sidebar {
+  width: 0;
+  padding: 0;
+  opacity: 0;
+}
+
+.sidebarTop {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.logoutBtn {
+  width: 100%;
+  padding: 12px;
+  background-color: #ff5252;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: auto;
+}
+
+.logoutBtn:hover {
+  background-color: #cc0000;
+}
+
+.inlineInputArea {
+  display: flex;
+  gap: 5px;
+  padding: 10px;
+  background: #f4f4f4;
+  border-radius: 4px;
+}
+
+.inlineInputArea input,
+.inlineInputArea select {
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: 14px;
+}
+
+.langTag {
+  font-size: 0.8rem;
+  color: #666;
+  background: #eee;
+  padding: 2px 6px;
+  border-radius: 4px;
+  display: inline-block;
+  margin-top: 5px;
+}
+
+.cancelBtn {
+  background: none;
+  border: none;
+  color: red;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.headerLeft {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.hamburgerBtn {
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+  color: #0f172a;
+  padding: 5px;
+  width: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s;
+}
+
+.hamburgerBtn:hover {
+  transform: scale(1.1);
+  border-radius: 4px;
+}
+
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(3px);
+}
+
+.modalContent {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  width: 350px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.modalContent h3 {
+  margin-top: 0;
+  color: #0f172a;
+}
+
+.modalContent input,
+.modalContent select {
+  width: 100%;
+  padding: 12px;
+  margin: 15px 0;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+}
+
+.modalActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.modalActions button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background: #eee;
+}
+
+.confirmBtn {
+  background: #2563eb !important;
+  width:fit-content;
+  color: white;
+}
+.cancelBtn{
+  color:black;
+  background-color: gray;
+    width:fit-content;
+
+}
+
+.deleteDocBtn {
+  background: none;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+.deleteDocBtn:hover {
+  color: #ef4444;
+  background-color: #fee2e2;
+}
+
+.workspaceList {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.workspaceItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 15px;
+  cursor: pointer;
+  color: #ccc;
+  border-radius: 4px;
+  margin: 2px 8px;
+  transition: 0.2s;
+}
+
+.workspaceItem:hover {
+  background: #2a2d2e;
+  color: white;
+}
+
+.workspaceItem.active {
+  background: #37373d;
+  color: white;
+  border-left: 3px solid #007acc;
+}
+
+.deleteWsBtn {
+  background: transparent;
+  border: none;
+  color: #666;
+  cursor: pointer;
+  font-size: 18px;
+  opacity: 0;
+  display: flex;
+  align-items: center;
+  transition: color 0.2s;
+}
+
+.workspaceItem:hover .deleteWsBtn {
+  opacity: 1;
+}
+
+.deleteWsBtn:hover {
+  color: #ff4d4d;
+}
+
+.editorContainer {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: #1e1e1e;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+.headerActions {
+  display: flex;
+  gap: 10px;
+}
+
+.terminalContainer {
+  height: 200px;
+  background: #000;
+  color: #0f0;
+  border-top: 2px solid #333;
+}
+
+.terminalHeader {
+  background: #222;
+  padding: 5px 15px;
+  font-size: 12px;
+  color: #aaa;
+}
+
+.terminalOutput {
+  padding: 10px;
+  white-space: pre-wrap;
+  overflow-y: auto;
+}
+
+.runBtn {
+  background-color: #22c55e;
+  color: white;
+  border: none;
+  padding: 3px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  height: 35px;
+}
+
+.runBtn:hover {
+  background-color: #16a34a;
+}
+
+.renameInput {
+  background: #2a2a2a;
+  border: 1px solid #444;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 2px 5px;
+  width: 80%;
+  border-radius: 4px;
+  outline: none;
+}
+
+.cardActions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.renameDocBtn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  padding: 4px;
+  border-radius: 4px;
+  color: #94a3b8;
+  transition: background 0.2s, color 0.2s;
+}
+
+.renameDocBtn:hover {
+  background: rgba(59, 130, 246, 0.1);
+  color: #3b82f6;
+}
+
+.joinSection {
+  padding: 15px;
+  border-bottom: 1px solid #333;
+  margin-bottom: 10px;
+}
+
+.joinForm {
+  display: flex;
+  gap: 8px;
+  background: #1e1e1e;
+  padding: 5px;
+  border-radius: 6px;
+  border: 1px solid #444;
+}
+
+.joinForm input {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 13px;
+  width: 100%;
+  outline: none;
+}
+
+.joinForm button {
+  background: #3a3a3a;
+  color: #007acc;
+  border: none;
+  border-radius: 4px;
+  padding: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: 0.3s;
+}
+
+.joinForm button:hover {
+  background: #007acc;
+  color: white;
+}
+
+.wsIdTag {
+  background: #2d2d2d;
+  color: #aaa;
+  font-size: 11px;
+  padding: 4px 10px;
+  border-radius: 15px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-left: 15px;
+  border: 1px solid #444;
+  transition: 0.2s;
+}
+
+.wsIdTag:hover {
+  background: #3d3d3d;
+  color: white;
+  border-color: #007acc;
+}
+
+.addWorkspaceBtn {
+  width: fit-content;
+  
+}
+
+.iconBtn {
+  background: transparent;
+  border: none;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 4px;
+  color: #94a3b8;
+  transition: background 0.2s, color 0.2s, transform 0.15s;
+    width:20px;
+
+}
+
+.iconBtn:hover {
+  background: rgba(59, 130, 246, 0.12);
+  color: #3b82f6;
+  transform: scale(1.1);
+}
+
+.iconBtn.danger:hover {
+  background: rgba(239, 68, 68, 0.15);
+  color: #ef4444;
+}
+
+.iconBtn svg {
+  font-size: 18px;
+}
+
+.deleteDocBtn,
+.renameDocBtn,
+.deleteWsBtn {
+  background: transparent;
+  border: none;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 4px;
+  color: #94a3b8;
+  transition: background 0.2s, color 0.2s, transform 0.15s;
+  width:20px;
+}
+
+.deleteDocBtn:hover,
+.deleteWsBtn:hover {
+  background: rgba(239, 68, 68, 0.15);
+  color: #ef4444;
+  transform: scale(1.1);
+}
+
+.renameDocBtn:hover {
+  background: rgba(59, 130, 246, 0.12);
+  color: #3b82f6;
+  transform: scale(1.1);
+}
+
+.hamburgerBtn svg {
+  font-size: 26px;
+}
+
+.runBtn svg {
+  font-size: 20px;
+  margin-right: 4px;
+}
+
+.docActions button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #bbb;
+  font-size: 18px;
+  margin-left: 6px;
+}
+
+.docActions button:hover {
+  color: #fff;
+}
+
+.downloadDocBtn {
+  color: grey;
+    width:fit-content;
+background-color: white;
+border:0px;
+}
+
+.downloadDocBtn:hover{
+  color:#16a34a;
+  background-color:#87d3a3;
+  border-radius: 4px;
+}

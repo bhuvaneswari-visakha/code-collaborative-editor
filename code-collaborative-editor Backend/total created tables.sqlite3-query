@@ -1,0 +1,71 @@
+-- database: ./code-collaborative-editor.db
+
+CREATE TABLE users (
+  user_id TEXT PRIMARY KEY,
+  email TEXT,
+  phoneNo TEXT,
+  username TEXT UNIQUE,
+  password TEXT,
+  name TEXT,
+  gender TEXT
+);
+
+CREATE TABLE workspaces (
+  workspace_id TEXT PRIMARY KEY,
+  name TEXT,
+  owner_id TEXT
+);
+
+CREATE TABLE documents (
+  doc_id TEXT PRIMARY KEY,
+  title TEXT,
+  content TEXT,
+  language TEXT,
+  owner_id TEXT,
+  workspace_id TEXT,
+  updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE document_history (
+  version_id INTEGER PRIMARY KEY AUTOINCREMENT,
+  doc_id TEXT,
+  content TEXT,
+  saved_by TEXT,
+  saved_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE messages (
+  message_id INTEGER PRIMARY KEY AUTOINCREMENT,
+  doc_id TEXT,
+  user_id TEXT,
+  message TEXT,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE collaborators (
+  collaborator_id TEXT PRIMARY KEY,
+  workspace_id TEXT,
+  user_id TEXT,
+  role TEXT
+);
+
+CREATE TABLE settings (
+  user_id TEXT PRIMARY KEY,
+  theme TEXT,
+  font_size INTEGER
+);
+
+
+-- DROP TABLE IF EXISTS workspaces;
+
+-- DROP TABLE IF EXISTS documents;
+
+-- DROP TABLE IF EXISTS collaborators;
+
+-- DROP TABLE IF EXISTS messages;
+
+-- DROP TABLE IF EXISTS document_history;
+
+-- DROP TABLE IF EXISTS settings;
+
+-- DROP TABLE IF EXISTS users;
