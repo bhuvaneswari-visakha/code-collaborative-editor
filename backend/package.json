@@ -4,22 +4,19 @@
     "dev": "nodemon app.js"
   },
   "dependencies": {
-    "@monaco-editor/react": "^4.7.0",
     "bcrypt": "^6.0.0",
     "cors": "^2.8.6",
     "dotenv": "^17.2.3",
-    "express": "^4.22.1",
-    "fs": "^0.0.1-security",
-    "ipaddr.js": "^2.3.0",
+    "express": "^4.21.2",
     "jsonwebtoken": "^9.0.3",
-    "lint": "^0.8.19",
-    "monaco-editor": "^0.55.1",
     "socket.io": "^4.8.3",
-    "sqlite": "^5.1.1",
     "sqlite3": "^5.1.7",
-    "uuidv4": "^6.2.13"
+    "uuid": "^9.0.1"
   },
   "devDependencies": {
     "nodemon": "^3.1.11"
-  }
+  },
+  "engines": {
+  "node": "18.x"
+}
 }
