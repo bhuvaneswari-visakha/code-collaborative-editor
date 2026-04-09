@@ -49,7 +49,7 @@ const Dashboard = () => {
   };
 
   const fetchWorkspaces = async () => {
-    const res = await fetch("http://localhost:4000/workspaces/", {
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/workspaces/`, {
       headers: { Authorization: `Bearer ${token}` },
     });
     const data = await res.json();
@@ -63,7 +63,7 @@ const Dashboard = () => {
   };
 
   const fetchDocuments = async (wsId) => {
-    const res = await fetch(`http://localhost:4000/workspaces/${wsId}/documents`, {
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/workspaces/${wsId}/documents`, {
       headers: { Authorization: `Bearer ${token}` },
     });
     const data = await res.json();
@@ -74,7 +74,7 @@ const Dashboard = () => {
     e.preventDefault();
     if (!joinWsId.trim()) return;
 
-    const res = await fetch("http://localhost:4000/workspaces/join", {
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/workspaces/join`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -96,7 +96,7 @@ const Dashboard = () => {
     e.preventDefault();
     if (!newWsName.trim()) return;
 
-    const res = await fetch("http://localhost:4000/workspaces/", {
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/workspaces/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -121,7 +121,7 @@ const Dashboard = () => {
     e.preventDefault();
     if (!newDocData.title.trim() || !activeWorkspace) return;
 
-    const res = await fetch("http://localhost:4000/documents/", {
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/documents/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -145,7 +145,7 @@ const Dashboard = () => {
     e.stopPropagation();
     if (!window.confirm("do you want to Delete?")) return;
 
-    const res = await fetch(`http://localhost:4000/workspaces/${id}`, {
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/workspaces/${id}`, {
       method: "DELETE",
       headers: { Authorization: `Bearer ${token}` },
     });
@@ -164,7 +164,7 @@ const Dashboard = () => {
     e.stopPropagation();
     if (!window.confirm("do you want to Delete?")) return;
 
-    const res = await fetch(`http://localhost:4000/documents/${id}`, {
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/documents/${id}`, {
       method: "DELETE",
       headers: { Authorization: `Bearer ${token}` },
     });
@@ -181,7 +181,7 @@ const Dashboard = () => {
       return;
     }
 
-    const res = await fetch(`http://localhost:4000/documents/${docId}/rename`, {
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/documents/${docId}/rename`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -210,7 +210,7 @@ const Dashboard = () => {
  const handleDownloadDocument = async (e, doc) => {
   e.stopPropagation();
   const res = await fetch(
-    `http://localhost:4000/documents/${doc.doc_id}`,
+    `${import.meta.env.VITE_API_URL}/documents/${doc.doc_id}`,
     {
       headers: {
         Authorization: `Bearer ${sessionStorage.getItem("token")}`

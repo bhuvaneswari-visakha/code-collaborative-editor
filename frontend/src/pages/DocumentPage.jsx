@@ -35,7 +35,7 @@ const [isChatOpen, setIsChatOpen] = useState(false);
       return undefined;
     }
 
-    const socket = io("http://localhost:4000", {
+    const socket = io(`${import.meta.env.VITE_API_URL}`, {
       auth: { token },
     });
     socketRef.current = socket;
@@ -50,7 +50,7 @@ const [isChatOpen, setIsChatOpen] = useState(false);
     if (!docId) return;
 
     const fetchDocument = async () => {
-      const res = await fetch(`http://localhost:4000/documents/${docId}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/documents/${docId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       if (!res.ok) {
@@ -127,7 +127,7 @@ const handleSendMessage = () => {
   };
 
   const handleSave = async () => {
-    const res = await fetch(`http://localhost:4000/documents/${docId}/save`, {
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/documents/${docId}/save`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -147,7 +147,7 @@ const handleSendMessage = () => {
     setIsRunning(true);
     setTerminalOutput("Executing code...");
 
-    const res = await fetch(`http://localhost:4000/documents/${docId}/run`, {
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/documents/${docId}/run`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
