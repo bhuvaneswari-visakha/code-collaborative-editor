@@ -26,6 +26,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
         <Route path="/register" element={<Register />} />
         <Route path='/dashboard' element={<Dashboard/>}/>
         <Route path="/document/:docId" element={<DocumentPage />} />
+        <Route path="*" element={<div>Page Not Found</div>} />
       </Routes>
     </Router>
   );
