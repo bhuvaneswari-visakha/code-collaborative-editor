@@ -8,7 +8,7 @@ import {
   MdContentCopy,
   MdGroupAdd,
 } from "react-icons/md";
-import Popup from "../components/Popup/popup";
+// import Popup from "../components/Popup/popup";
 import "./dashboard.css";
 
 const Dashboard = () => {
@@ -208,13 +208,14 @@ const Dashboard = () => {
 
   return (
     <div className={`dashboardContainer ${isSidebarOpen ? "" : "sidebar-closed"}`}>
-      {popup.show && (
+      {/* Popup component removed - use triggerPopup for logging instead */}
+      {/*popup.show && (
         <Popup
           message={popup.message}
           type={popup.type}
           onClose={() => setPopup({ ...popup, show: false })}
         />
-      )}
+      )*/}
 
       {showWsModal && (
         <div className="modalOverlay" onClick={() => setShowWsModal(false)}>

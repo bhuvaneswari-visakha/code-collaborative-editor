@@ -9,7 +9,7 @@ import {
   MdGroupAdd,
   MdDownload,
 } from "react-icons/md";
-import Popup from "../components/Popup/popup";
+// import Popup from "../components/Popup/popup";
 import "./dashboard.css";
 
 const Dashboard = () => {
@@ -258,13 +258,14 @@ const Dashboard = () => {
     style={{
                overflowY: workspaces.length > 4 ? "auto" : "hidden",      }}
           >
-      {popup.show && (
+      {/* Popup component removed - use triggerPopup for logging instead */}
+      {/*popup.show && (
         <Popup
           message={popup.message}
           type={popup.type}
           onClose={() => setPopup({ ...popup, show: false })}
         />
-      )}
+      )*/}
 
       {showWsModal && (
         <div className="modalOverlay" onClick={() => setShowWsModal(false)}>
