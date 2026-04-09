@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 
 // import Home from './components/Home/home';
 // import About from './components/About/about';
@@ -21,6 +21,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
           <Route path="/login" element={<Login />} />
         </Route>
         */}
+        <Route path="/" element={<Navigate to="/dashboard" replace />} />
         <Route path='/dashboard' element={<Dashboard/>}/>
         <Route path="/document/:docId" element={<DocumentPage />} />
       </Routes>
