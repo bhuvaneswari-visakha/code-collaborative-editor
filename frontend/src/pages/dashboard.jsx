@@ -30,10 +30,8 @@ const Dashboard = () => {
   const [popup, setPopup] = useState({ show: false, message: "", type: "" });
 
   useEffect(() => {
-    // Temporarily disabled login check for debugging
-    // if (!token) navigate("/login");
-    // else fetchWorkspaces();
-    fetchWorkspaces();
+    if (!token) navigate("/login");
+    else fetchWorkspaces();
   }, [token, navigate]);
 
   useEffect(() => {
