@@ -202,9 +202,19 @@ const Dashboard = () => {
     setRenamingId(null);
   };
 
-  const copyId = (id) => {
-    navigator.clipboard.writeText(id);
-    triggerPopup("ID copied");
+  const copyId = async (id) => {
+    if (!navigator.clipboard) {
+      triggerPopup("Clipboard not supported", "error");
+      return;
+    }
+
+    try {
+      await navigator.clipboard.writeText(id);
+      triggerPopup("ID copied");
+    } catch (err) {
+      console.error("Clipboard write failed", err);
+      triggerPopup("Copy failed: allow clipboard access", "error");
+    }
   };
 
  const handleDownloadDocument = async (e, doc) => {
@@ -258,14 +268,9 @@ const Dashboard = () => {
     style={{
                overflowY: workspaces.length > 4 ? "auto" : "hidden",      }}
           >
-      {/* Popup component removed - use triggerPopup for logging instead */}
-      {/*popup.show && (
-        <Popup
-          message={popup.message}
-          type={popup.type}
-          onClose={() => setPopup({ ...popup, show: false })}
-        />
-      )*/}
+      {popup.show && (
+        <div className={`toast ${popup.type}`}>{popup.message}</div>
+      )}
 
       {showWsModal && (
         <div className="modalOverlay" onClick={() => setShowWsModal(false)}>

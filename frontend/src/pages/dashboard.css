@@ -249,14 +249,46 @@
 
 .confirmBtn {
   background: #2563eb !important;
-  width:fit-content;
+  width: fit-content;
   color: white;
 }
-.cancelBtn{
-  color:black;
+.cancelBtn {
+  color: black;
   background-color: gray;
-    width:fit-content;
+  width: fit-content;
+}
 
+.toast {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  min-width: 180px;
+  padding: 14px 18px;
+  border-radius: 14px;
+  color: white;
+  font-weight: 600;
+  z-index: 2000;
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.18);
+  animation: toastIn 0.25s ease-out;
+}
+
+.toast.success {
+  background: linear-gradient(135deg, #10b981, #14b8a6);
+}
+
+.toast.error {
+  background: linear-gradient(135deg, #ef4444, #f97316);
+}
+
+@keyframes toastIn {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 .deleteDocBtn {

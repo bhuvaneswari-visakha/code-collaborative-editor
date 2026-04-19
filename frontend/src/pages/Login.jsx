@@ -33,7 +33,12 @@ const Login = () => {
   return (
     <div style={{
       minHeight: '100vh',
-      background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+      background: `
+        radial-gradient(ellipse 700px 500px at 15% 40%, rgba(56, 189, 248, 0.2) 0%, transparent 50%),
+        radial-gradient(ellipse 600px 700px at 85% 60%, rgba(124, 58, 237, 0.2) 0%, transparent 50%),
+        linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%)
+      `,
+      backgroundAttachment: 'fixed',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
@@ -49,9 +54,10 @@ const Login = () => {
         left: '10%',
         width: '120px',
         height: '120px',
-        background: 'rgba(255, 255, 255, 0.05)',
+        background: 'rgba(56, 189, 248, 0.12)',
         borderRadius: '50%',
-        animation: 'float 8s ease-in-out infinite'
+        animation: 'float 8s ease-in-out infinite',
+        boxShadow: '0 0 40px rgba(56, 189, 248, 0.2)'
       }}></div>
       <div style={{
         position: 'absolute',
@@ -59,9 +65,10 @@ const Login = () => {
         right: '8%',
         width: '90px',
         height: '90px',
-        background: 'rgba(255, 255, 255, 0.03)',
+        background: 'rgba(124, 58, 237, 0.15)',
         borderRadius: '50%',
-        animation: 'float 10s ease-in-out infinite reverse'
+        animation: 'float 10s ease-in-out infinite reverse',
+        boxShadow: '0 0 35px rgba(124, 58, 237, 0.25)'
       }}></div>
       <div style={{
         position: 'absolute',
@@ -69,18 +76,19 @@ const Login = () => {
         left: '70%',
         width: '60px',
         height: '60px',
-        background: 'rgba(255, 255, 255, 0.04)',
+        background: 'rgba(168, 85, 247, 0.1)',
         borderRadius: '50%',
-        animation: 'float 7s ease-in-out infinite'
+        animation: 'float 7s ease-in-out infinite',
+        boxShadow: '0 0 25px rgba(168, 85, 247, 0.15)'
       }}></div>
 
       <div style={{
-        background: 'rgba(255, 255, 255, 0.95)',
+        background: 'rgba(15, 23, 42, 0.7)',
         backdropFilter: 'blur(25px)',
         borderRadius: '30px',
         padding: '60px',
-        boxShadow: '0 30px 60px rgba(0,0,0,0.2)',
-        border: '1px solid rgba(255, 255, 255, 0.3)',
+        boxShadow: '0 30px 80px rgba(56, 189, 248, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
+        border: '1px solid rgba(56, 189, 248, 0.2)',
         width: '100%',
         maxWidth: '500px',
         position: 'relative',
@@ -92,7 +100,7 @@ const Login = () => {
           left: '0',
           right: '0',
           height: '6px',
-          background: 'linear-gradient(90deg, #4f46e5, #7c3aed, #a855f7, #ec4899)',
+          background: 'linear-gradient(90deg, #38bdf8, #0ea5e9, #06b6d4, #06b6d4)',
           borderRadius: '30px 30px 0 0'
         }}></div>
 
@@ -108,8 +116,8 @@ const Login = () => {
             fontSize: '2.8rem',
             marginBottom: '15px',
             fontWeight: '200',
-            color: '#1f2937',
-            background: 'linear-gradient(135deg, #4f46e5, #7c3aed)',
+            color: '#e0f2fe',
+            background: 'linear-gradient(135deg, #38bdf8, #0ea5e9)',
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
             backgroundClip: 'text'
@@ -117,7 +125,7 @@ const Login = () => {
             Welcome Back
           </h2>
           <p style={{
-            color: '#6b7280',
+            color: '#cbd5e1',
             fontSize: '1.1rem',
             margin: '0',
             fontWeight: '400'
@@ -133,7 +141,7 @@ const Login = () => {
               alignItems: 'center',
               gap: '8px',
               marginBottom: '10px',
-              color: '#374151',
+              color: '#e0f2fe',
               fontWeight: '700',
               fontSize: '1rem'
             }}>
@@ -150,22 +158,23 @@ const Login = () => {
                 style={{
                   width: '100%',
                   padding: '18px 20px',
-                  border: '2px solid #e5e7eb',
+                  border: '2px solid rgba(56, 189, 248, 0.3)',
                   borderRadius: '15px',
                   fontSize: '1.1rem',
                   transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
                   boxSizing: 'border-box',
-                  background: 'rgba(255, 255, 255, 0.9)',
+                  background: 'rgba(30, 41, 59, 0.8)',
                   outline: 'none',
-                  fontWeight: '500'
+                  fontWeight: '500',
+                  color: '#e0f2fe'
                 }}
                 onFocus={(e) => {
-                  e.target.style.borderColor = '#4f46e5';
-                  e.target.style.boxShadow = '0 0 0 4px rgba(79, 70, 229, 0.1), 0 8px 25px rgba(79, 70, 229, 0.1)';
+                  e.target.style.borderColor = '#38bdf8';
+                  e.target.style.boxShadow = '0 0 0 4px rgba(56, 189, 248, 0.2), 0 8px 25px rgba(56, 189, 248, 0.15)';
                   e.target.style.transform = 'translateY(-2px)';
                 }}
                 onBlur={(e) => {
-                  e.target.style.borderColor = '#e5e7eb';
+                  e.target.style.borderColor = 'rgba(56, 189, 248, 0.3)';
                   e.target.style.boxShadow = 'none';
                   e.target.style.transform = 'translateY(0)';
                 }}
@@ -179,7 +188,7 @@ const Login = () => {
               alignItems: 'center',
               gap: '8px',
               marginBottom: '10px',
-              color: '#374151',
+              color: '#e0f2fe',
               fontWeight: '700',
               fontSize: '1rem'
             }}>
@@ -196,22 +205,23 @@ const Login = () => {
                 style={{
                   width: '100%',
                   padding: '18px 20px',
-                  border: '2px solid #e5e7eb',
+                  border: '2px solid rgba(56, 189, 248, 0.3)',
                   borderRadius: '15px',
                   fontSize: '1.1rem',
                   transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
                   boxSizing: 'border-box',
-                  background: 'rgba(255, 255, 255, 0.9)',
+                  background: 'rgba(30, 41, 59, 0.8)',
                   outline: 'none',
-                  fontWeight: '500'
+                  fontWeight: '500',
+                  color: '#e0f2fe'
                 }}
                 onFocus={(e) => {
-                  e.target.style.borderColor = '#4f46e5';
-                  e.target.style.boxShadow = '0 0 0 4px rgba(79, 70, 229, 0.1), 0 8px 25px rgba(79, 70, 229, 0.1)';
+                  e.target.style.borderColor = '#38bdf8';
+                  e.target.style.boxShadow = '0 0 0 4px rgba(56, 189, 248, 0.2), 0 8px 25px rgba(56, 189, 248, 0.15)';
                   e.target.style.transform = 'translateY(-2px)';
                 }}
                 onBlur={(e) => {
-                  e.target.style.borderColor = '#e5e7eb';
+                  e.target.style.borderColor = 'rgba(56, 189, 248, 0.3)';
                   e.target.style.boxShadow = 'none';
                   e.target.style.transform = 'translateY(0)';
                 }}
@@ -221,16 +231,16 @@ const Login = () => {
 
           {error && (
             <div style={{
-              background: 'linear-gradient(135deg, #fee2e2, #fecaca)',
-              border: '1px solid #fca5a5',
-              color: '#dc2626',
+              background: 'rgba(239, 68, 68, 0.15)',
+              border: '1px solid rgba(239, 68, 68, 0.4)',
+              color: '#fca5a5',
               padding: '15px 20px',
               borderRadius: '12px',
               marginBottom: '30px',
               fontSize: '1rem',
               fontWeight: '600',
               textAlign: 'center',
-              boxShadow: '0 4px 15px rgba(220, 38, 38, 0.1)',
+              boxShadow: '0 4px 15px rgba(239, 68, 68, 0.1)',
               animation: 'shake 0.5s ease-in-out'
             }}>
               ⚠️ {error}
@@ -242,7 +252,7 @@ const Login = () => {
             style={{
               width: '100%',
               padding: '18px',
-              background: 'linear-gradient(135deg, #4f46e5, #7c3aed, #a855f7)',
+              background: 'linear-gradient(135deg, #38bdf8, #0ea5e9, #06b6d4)',
               color: 'white',
               border: 'none',
               borderRadius: '15px',
@@ -250,18 +260,10 @@ const Login = () => {
               fontWeight: '700',
               cursor: 'pointer',
               transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-              boxShadow: '0 8px 25px rgba(79, 70, 229, 0.4)',
+              boxShadow: '0 8px 25px rgba(56, 189, 248, 0.4)',
               marginBottom: '30px',
               position: 'relative',
               overflow: 'hidden'
-            }}
-            onMouseOver={(e) => {
-              e.target.style.transform = 'translateY(-3px) scale(1.02)';
-              e.target.style.boxShadow = '0 15px 35px rgba(79, 70, 229, 0.6)';
-            }}
-            onMouseOut={(e) => {
-              e.target.style.transform = 'translateY(0) scale(1)';
-              e.target.style.boxShadow = '0 8px 25px rgba(79, 70, 229, 0.4)';
             }}
           >
             <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px' }}>
@@ -286,10 +288,10 @@ const Login = () => {
         <div style={{
           textAlign: 'center',
           paddingTop: '25px',
-          borderTop: '2px solid #f3f4f6'
+          borderTop: '2px solid rgba(56, 189, 248, 0.2)'
         }}>
           <p style={{
-            color: '#6b7280',
+            color: '#cbd5e1',
             fontSize: '1rem',
             margin: '0',
             fontWeight: '500'
@@ -298,19 +300,11 @@ const Login = () => {
             <a
               href="/register"
               style={{
-                color: '#4f46e5',
+                color: '#38bdf8',
                 textDecoration: 'none',
                 fontWeight: '700',
                 transition: 'all 0.3s ease',
                 position: 'relative'
-              }}
-              onMouseOver={(e) => {
-                e.target.style.color = '#7c3aed';
-                e.target.style.transform = 'scale(1.05)';
-              }}
-              onMouseOut={(e) => {
-                e.target.style.color = '#4f46e5';
-                e.target.style.transform = 'scale(1)';
               }}
             >
               Create Account →
