@@ -2,16 +2,16 @@ const express = require('express');
 const cors = require('cors');
 const http = require("http");
 const { Server } = require("socket.io");
-const { exec } = require("child_process");
 const bcrypt = require('bcrypt');
 const { open } = require('sqlite');
 const sqlite3 = require('sqlite3');
 const jwt = require('jsonwebtoken');
 const { v4: uuidv4 } = require("uuid");
-require("dotenv").config();
-const { spawn } = require("child_process");
-const fs = require("fs");
+const axios = require('axios');
 const path = require("path");
+const fs = require("fs");
+const { spawn } = require("child_process");
+require("dotenv").config();
 const PORT = Number(process.env.PORT) || 4000;
 const JWT_SECRET = process.env.JWT_SECRET;
 
@@ -197,7 +197,7 @@ app.post("/register/", async (req, res) => {
   if (existingUser) {
     return res.status(400).send("User already exists");
   }
-  const hashedPassword = await bcrypt.hash(password, 10);
+  const hashedPassword = await bcrypt.hash(password, 8);
   const userId = uuidv4();
   const insertUserQuery = `
     INSERT INTO users (user_id,email, username, password, name)
@@ -835,6 +835,7 @@ app.post("/documents/:docId/run", authenticateToken, async (req, res) => {
 
     console.log(`--- Execution Request ---`);
     console.log(`ID: ${docId} | Language: ${language}`);
+    console.log(`Content length: ${content?.length || 0} characters`);
 
     try {
         const user = await getUserByUsername(username);
@@ -849,81 +850,101 @@ app.post("/documents/:docId/run", authenticateToken, async (req, res) => {
             return res.status(403).json({ output: "Not authorized" });
         }
 
-        const tempDir = path.resolve(__dirname, "temp");
-        if (!fs.existsSync(tempDir)) {
-            fs.mkdirSync(tempDir, { recursive: true });
+        // Map language names to Judge0 language IDs
+        const languageMap = {
+            'javascript': 63,  // Node.js
+            'python': 71,      // Python 3
+            'java': 62,        // Java
+            'cpp': 54,         // C++ (GCC 9.2.0)
+            'c': 50,           // C (GCC 9.2.0)
+            'csharp': 51,      // C# (Mono 6.6.0.161)
+            'ruby': 72,        // Ruby
+            'go': 60,          // Go
+            'php': 68,         // PHP
+            'typescript': 74,  // TypeScript
+        };
+
+        const languageId = languageMap[language.toLowerCase()];
+        console.log(`Language ID for '${language}': ${languageId}`);
+        
+        if (!languageId) {
+            return res.status(400).json({ output: `Unsupported language: ${language}` });
         }
 
-        let filePath;
-        let command;
-        let args = [];
+        console.log('Submitting to Judge0 API...');
+        
+        const JUDGE0_URL = process.env.JUDGE0_API_URL || 'https://ce.judge0.com';
+        const POLL_INTERVAL = parseFloat(process.env.JUDGE0_POLL_INTERVAL_SECONDS || '1.0') * 1000;
+        const MAX_ATTEMPTS = parseInt(process.env.JUDGE0_MAX_POLL_ATTEMPTS || '10');
+        
+        // Submit code to Judge0
+        const submissionResponse = await axios.post(
+            `${JUDGE0_URL}/submissions?base64_encoded=false&wait=false`,
+            {
+                source_code: content,
+                language_id: languageId,
+                stdin: "",
+            },
+            {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }
+        );
 
-        if (language === "javascript") {
-            filePath = path.join(tempDir, `${docId}.js`);
-            command = "node";
-        } else if (language === "python") {
-            filePath = path.join(tempDir, `${docId}.py`);
-            fs.writeFileSync(filePath, content, "utf8");
+        console.log('Judge0 Response Status:', submissionResponse.status);
+        const submission = submissionResponse.data;
+        const token = submission.token;
+        
+        console.log('Submission token:', token);
+        
+        // Poll for result
+        let result;
+        let attempts = 0;
+        
+        while (attempts < MAX_ATTEMPTS) {
+            await new Promise(resolve => setTimeout(resolve, POLL_INTERVAL));
             
-            command = "C:\\Users\\LENOVO\\AppData\\Local\\Programs\\Python\\Python312\\python.exe";
+            const resultResponse = await axios.get(
+                `${JUDGE0_URL}/submissions/${token}?base64_encoded=false`
+            );
             
-            args = [filePath];
-        }else {
-            return res.status(400).json({ output: "Unsupported language selected." });
+            result = resultResponse.data;
+            console.log(`Poll attempt ${attempts + 1}, Status: ${result.status.description}`);
+            
+            // Status 1 = In Queue, 2 = Processing
+            if (result.status.id > 2) {
+                break;
+            }
+            
+            attempts++;
+        }
+        
+        console.log('Judge0 Result:', JSON.stringify(result, null, 2));
+
+        // Format output
+        let output = '';
+        if (result.stdout) {
+            output = result.stdout;
+        } else if (result.stderr) {
+            output = result.stderr;
+        } else if (result.compile_output) {
+            output = result.compile_output;
+        } else if (result.message) {
+            output = result.message;
+        } else {
+            output = 'Program finished with no output.';
         }
 
-        fs.writeFileSync(filePath, content, "utf8");
-        args = [filePath];
-
-        let output = "";
-        let errorOutput = "";
-        let responseSent = false;
-
-        const child = spawn(command, args);
-
-        child.stdout.on("data", (data) => {
-            output += data.toString();
-        });
-
-        child.stderr.on("data", (data) => {
-            errorOutput += data.toString();
-        });
-
-        child.on("close", (code) => {
-            if (!responseSent) {
-                responseSent = true;
-                // If there's errorOutput (like a syntax error), return that, otherwise return stdout
-                const finalResult = errorOutput || output || "Program finished with no output.";
-                res.json({ output: finalResult });
-                
-                // Cleanup file
-                if (fs.existsSync(filePath)) fs.unlinkSync(filePath);
-            }
-        });
-
-        child.on("error", (err) => {
-            if (!responseSent) {
-                responseSent = true;
-                console.error("Spawn Error:", err.message);
-                res.json({ 
-                    output: `System Error: Could not find the '${command}' executable. Please ensure ${language} is installed and added to your PATH.` 
-                });
-                if (fs.existsSync(filePath)) fs.unlinkSync(filePath);
-            }
-        });
-
-        // 5. Timeout protection (5 seconds)
-        setTimeout(() => {
-            if (!responseSent) {
-                responseSent = true;
-                child.kill();
-                res.json({ output: "Execution timed out (5 seconds)." });
-                if (fs.existsSync(filePath)) fs.unlinkSync(filePath);
-            }
-        }, 5000);
+        console.log('Sending output to client');
+        res.json({ output: output.trim() });
 
     } catch (err) {
-        console.error("Server Catch Block:", err);
+        console.error("Server Catch Block:", err.message);
+        if (err.response) {
+            console.error('Judge0 API Error:', err.response.data);
+            return res.status(500).json({ output: 'Code execution service error: ' + (err.response.data.message || err.response.data.error || 'Unknown error') });
+        }
         res.status(500).json({ output: "Internal Server Error: " + err.message });
     }
 });

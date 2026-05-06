@@ -8,6 +8,15 @@ import Features from "./pages/Features";
 
  const Navigation = () => {
   const navigate = useNavigate();
+  
+  // Check if user is logged in
+  const isLoggedIn = sessionStorage.getItem('token');
+  
+  // Don't render navigation if user is logged in
+  if (isLoggedIn) {
+    return null;
+  }
+  
   return (
     <nav style={{
       position: 'fixed',

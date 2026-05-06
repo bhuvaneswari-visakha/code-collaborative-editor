@@ -143,20 +143,33 @@ const Dashboard = () => {
 
   const handleDeleteWorkspace = async (e, id) => {
     e.stopPropagation();
-    if (!window.confirm("do you want to Delete?")) return;
+    console.log('Delete workspace clicked:', id);
+    
+    if (!window.confirm("Do you want to delete this workspace?")) {
+      console.log('Delete cancelled by user');
+      return;
+    }
 
+    console.log('Sending delete request...');
     const res = await fetch(`${import.meta.env.VITE_API_URL}/workspaces/${id}`, {
       method: "DELETE",
       headers: { Authorization: `Bearer ${token}` },
     });
 
+    console.log('Delete response status:', res.status);
     if (res.ok) {
-      triggerPopup("Deleted", "error");
+      triggerPopup("Workspace deleted successfully", "success");
       if (activeWorkspace?.workspace_id === id) {
         setActiveWorkspace(null);
         setDocuments([]);
       }
       fetchWorkspaces();
+    } else if (res.status === 403) {
+      triggerPopup("You are not authorized to delete this workspace", "error");
+    } else {
+      const errorText = await res.text();
+      console.error('Delete failed:', errorText);
+      triggerPopup("You are not authorized to delete this workspace", "error");
     }
   };
 
@@ -296,9 +309,14 @@ const Dashboard = () => {
               <select value={newDocData.language} onChange={(e) => setNewDocData({ ...newDocData, language: e.target.value })}>
                 <option value="javascript">JavaScript</option>
                 <option value="python">Python</option>
-                <option value="html">HTML</option>
-                <option value="c">C</option>
                 <option value="java">Java</option>
+                <option value="c">C</option>
+                <option value="cpp">C++</option>
+                <option value="csharp">C#</option>
+                <option value="php">PHP</option>
+                <option value="ruby">Ruby</option>
+                <option value="go">Go</option>
+                <option value="typescript">TypeScript</option>
               </select>
               <div className="modalActions">
                 <button type="button" className="cancelBtn" onClick={() => setShowDocModal(false)}>Cancel</button>
